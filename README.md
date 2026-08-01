@@ -101,6 +101,12 @@ npm install jsdom
 node tests/render-test.js
 ```
 
-## Mise en ligne
+## Le site en ligne
 
-Glisse le dossier entier sur [Netlify Drop](https://app.netlify.com/drop) ou pousse-le sur GitHub Pages. Rien à compiler.
+**https://adrshitdesign.github.io/ladcouverte/**
+
+Hébergé par GitHub Pages depuis la branche `main` de ce dépôt (`adrshitdesign/ladcouverte`). Chaque modification poussée sur `main` est publiée automatiquement en une minute environ.
+
+Pour mettre à jour un fichier sans passer par la ligne de commande : ouvre-le sur GitHub, clique sur le crayon, modifie, *Commit changes*. Pour remplacer plusieurs fichiers : *Add file > Upload files* dans le dossier concerné.
+
+Attention : le contenu éditorial (articles, membres, blog) ne se met **pas** à jour par ce dépôt — il vit dans Supabase et se modifie depuis `admin.html`. Le dépôt ne contient que le code du site et le contenu de secours (`data/seed.js`).
