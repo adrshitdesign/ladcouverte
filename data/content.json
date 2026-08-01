@@ -203,11 +203,11 @@
       { "id": "g3", "url": "assets/img/carte-spike-lee.jpg", "caption": "À la Dcouverte — Spike Lee" },
       { "id": "g4", "url": "assets/img/carte-passe.jpg", "caption": "À la Dcouverte — Passé" },
       { "id": "g5", "url": "assets/img/dbat-albums-2026-2.jpg", "caption": "Le Dbat — Les albums surestimés de 2026" },
-      { "id": "g6", "url": "assets/img/top-summer-classique.jpg", "caption": "Top album — Summer Classique" },
+      { "id": "g6", "url": "assets/img/top-summer-classique-2.jpg", "caption": "Summer Classique — les classiques de l'été by LaD" },
       { "id": "g7", "url": "assets/img/playlist-house-party.jpg", "caption": "Playlist — Soirée House Party" },
       { "id": "g8", "url": "assets/img/playlist-summer-break.jpg", "caption": "Playlist — Summer Break 2" },
       { "id": "g9", "url": "assets/img/playlist-cut-the-boat.jpg", "caption": "Playlist — Cut The Boat" },
-      { "id": "g10", "url": "assets/img/chasse-au-tresor.jpg", "caption": "Chasse au trésor" },
+      { "id": "g10", "url": "assets/img/chasse-au-tresor.jpg", "caption": "Ses influences" },
       { "id": "g11", "url": "assets/img/portrait-artiste-2.jpg", "caption": "Séance photo" },
       { "id": "g12", "url": "assets/img/playlist-vent-tourne.jpg", "caption": "Playlist — Le vent tourne" }
     ],

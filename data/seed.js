@@ -305,8 +305,8 @@ window.LAD_SEED = {
       },
       {
         "id": "g6",
-        "url": "assets/img/top-summer-classique.jpg",
-        "caption": "Top album — Summer Classique"
+        "url": "assets/img/top-summer-classique-2.jpg",
+        "caption": "Summer Classique — les classiques de l'été by LaD"
       },
       {
         "id": "g7",
@@ -326,7 +326,7 @@ window.LAD_SEED = {
       {
         "id": "g10",
         "url": "assets/img/chasse-au-tresor.jpg",
-        "caption": "Chasse au trésor"
+        "caption": "Ses influences"
       },
       {
         "id": "g11",
