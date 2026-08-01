@@ -71,15 +71,18 @@ Un aperçu s'affiche sous les blocs vidéo et écoute pendant que tu colles le l
 
 ## Images et logo
 
-Le site n'embarque pas de fichiers image : tu colles des URL. Trois options :
+Deux endroits, selon l'usage :
 
-- **Le plus simple** : dépose tes images dans un dossier `assets/img/` à côté du site et utilise `assets/img/mon-image.jpg` comme URL.
-- Supabase Storage (bucket public) si tu es en mode en ligne.
-- N'importe quel hébergeur d'images.
+**`assets/img/` dans ce dépôt** — les visuels éditoriaux (couvertures d'articles, bandeau d'accueil, galerie). 21 images du Drive y sont déjà, redimensionnées et compressées pour le web (4,4 Mo au total). Pour en ajouter : *Add file > Upload files* dans `assets/img`, puis utilise `assets/img/mon-image.jpg` comme URL dans l'admin.
 
-Pour le logo : Admin > **Identité du site** > Logo (URL d'image). Tant que c'est vide, un logo typographique avec un bateau est utilisé (rappel du logo bateau de LaD). Les couleurs d'accent sont aussi modifiables là.
+**Supabase Storage (bucket `medias`)** — les logos. 12 déclinaisons du bateau LaD y sont hébergées, publiques en lecture. Exemple d'URL :
+`https://pamblclzgkiqfkojnomp.supabase.co/storage/v1/object/public/medias/logo-rond-orange.png`
 
-Les logos officiels sont dans le Drive : *Drive LaD > RESSOURCES > Logos* (`logo LaD.png`, `LOGO-BATEAU-BLANC.png`, `LOGO-COULEUR-BATEAU.png`).
+Variantes disponibles : `logo-rond-orange`, `logo-rond-noir`, `logo-bateau-orange`, `logo-blason-blanc`, `logo-blason-orange`, `logo-rendu-02` à `07`, `favicon`.
+
+Le logo et le favicon se changent dans Admin > **Identité du site**, avec les deux couleurs d'accent (l'orange actuel, `#FF6840`, est pipeté dans le logo). Si le champ logo est vide, un bateau dessiné en SVG prend le relais.
+
+Un mot sur le Drive : Google bloque la copie automatique des fichiers qui ne sont pas partagés par lien. Pour ajouter d'autres images du Drive, télécharge-les puis dépose-les dans `assets/img`.
 
 ## Modération du blog
 
