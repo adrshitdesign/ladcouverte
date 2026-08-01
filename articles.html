@@ -71,7 +71,7 @@ LAD.boot("articles.html", function () {
     document.getElementById("empty").style.display = list.length ? "none" : "block";
     document.getElementById("list").innerHTML = list.map(function (a) {
       return '<a class="card" href="' + LAD.articleUrl(a) + '">' +
-        '<div class="card-media">' + (a.cover ? '<img src="' + U.esc(a.cover) + '" alt="' + U.esc(a.title) + '">' : LAD.mark("mark-sm")) + '</div>' +
+        '<div class="card-media">' + (a.cover ? '<img src="' + U.esc(a.cover) + '" alt="' + U.esc(a.title) + '">' : LAD.placeholder()) + '</div>' +
         '<div class="card-body"><span class="card-kicker">' + U.esc(a.kicker || "Article") + '</span>' +
         '<h3>' + U.esc(a.title) + '</h3><p>' + U.esc(a.excerpt) + '</p>' +
         '<div class="card-meta"><span>' + U.esc(a.author || "") + '</span><span>' + U.date(a.date) + '</span>' +

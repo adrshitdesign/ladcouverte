@@ -30,6 +30,11 @@ LAD.boot("histoire.html", function () {
     '<h1 style="font-size:clamp(34px,5vw,62px);max-width:20ch">Qui est La Dcouverte ?</h1>' +
     '<p style="font-size:19px">' + U.esc(hi.intro || "") + '</p></div></section>';
 
+  if (hi.image) {
+    html += '<div class="wrap"><div class="article-cover" style="margin-bottom:0">' +
+      '<img src="' + U.esc(hi.image) + '" alt="La Dcouverte"></div></div>';
+  }
+
   if ((hi.stats || []).length) {
     html += '<section class="section" style="padding-top:20px"><div class="wrap"><div class="stats">' +
       hi.stats.map(function (x) {
@@ -65,6 +70,17 @@ LAD.boot("histoire.html", function () {
               return '<a class="tag" href="' + U.esc(l.url) + '" target="_blank" rel="noopener">' + U.esc(l.label) + '</a>';
             }).join("") + '</div>' : "") +
           '</div>';
+      }).join("") + '</div></div></section>';
+  }
+
+  if ((hi.gallery || []).length) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>En images</h2><span class="link">Nos concerts, soirées et coulisses</span></div>' +
+      '<div class="grid c3">' + hi.gallery.map(function (g) {
+        return '<figure style="margin:0"><div class="card-media" style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)">' +
+          '<img src="' + U.esc(g.url) + '" alt="' + U.esc(g.caption || "") + '" loading="lazy"></div>' +
+          (g.caption ? '<figcaption class="muted" style="font-size:13px;margin-top:8px">' + U.esc(g.caption) + '</figcaption>' : "") +
+          '</figure>';
       }).join("") + '</div></div></section>';
   }
 

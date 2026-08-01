@@ -79,7 +79,7 @@ LAD.boot("articles.html", function () {
     html += '<section class="section"><div class="section-head"><h2>Dans la même veine</h2></div><div class="grid c3">' +
       related.map(function (x) {
         return '<a class="card" href="' + LAD.articleUrl(x) + '">' +
-          '<div class="card-media">' + (x.cover ? '<img src="' + U.esc(x.cover) + '" alt="">' : LAD.mark("mark-sm")) + '</div>' +
+          '<div class="card-media">' + (x.cover ? '<img src="' + U.esc(x.cover) + '" alt="">' : LAD.placeholder()) + '</div>' +
           '<div class="card-body"><span class="card-kicker">' + U.esc(x.kicker || "") + '</span><h3>' + U.esc(x.title) + '</h3>' +
           '<div class="card-meta"><span>' + U.date(x.date) + '</span></div></div></a>';
       }).join("") + '</div></section>';

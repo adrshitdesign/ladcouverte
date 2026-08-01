@@ -34,7 +34,7 @@ LAD.boot("index.html", function () {
   function cover(a, cls, markCls) {
     return a && a.cover
       ? '<img src="' + U.esc(a.cover) + '" alt="' + U.esc(a.title) + '">'
-      : LAD.mark(markCls || "mark-sm");
+      : LAD.placeholder();
   }
 
   var html = '';
@@ -48,7 +48,7 @@ LAD.boot("index.html", function () {
       '<a class="btn accent" href="' + U.esc(h.heroCtaUrl || "articles.html") + '">' + U.esc(h.heroCtaLabel || "Lire les articles") + '</a>' +
       '<a class="btn ghost" href="forum.html">Poser une question</a>' +
     '</div></div>' +
-    '<div class="hero-art">' + (h.heroImage ? '<img src="' + U.esc(h.heroImage) + '" alt="">' : LAD.mark("mark-lg")) + '</div>' +
+    '<div class="hero-art">' + (h.heroImage ? '<img src="' + U.esc(h.heroImage) + '" alt="">' : LAD.placeholder("hero")) + '</div>' +
     '</div></section>';
 
   /* ---- À la une ---- */
@@ -56,7 +56,7 @@ LAD.boot("index.html", function () {
     html += '<section class="section"><div class="wrap">' +
       '<div class="section-head"><h2>À la une</h2><a class="link" href="articles.html">Tous les articles →</a></div>' +
       '<a class="feature" href="' + LAD.articleUrl(featured) + '">' +
-        '<div class="card-media">' + cover(featured, "", "mark-sm") + '</div>' +
+        '<div class="card-media">' + cover(featured) + '</div>' +
         '<div class="feature-body"><span class="card-kicker">' + U.esc(featured.kicker || "Article") + '</span>' +
         '<h3>' + U.esc(featured.title) + '</h3>' +
         '<p class="muted">' + U.esc(featured.excerpt) + '</p>' +
