@@ -1,0 +1,435 @@
+/* Contenu initial du site — généré depuis data/content.json.
+   Pour publier de nouvelles modifications faites dans l'admin en mode local :
+   Admin > Sauvegarde > Télécharger seed.js, puis remplace ce fichier. */
+window.LAD_SEED = {
+  "version": 1,
+  "settings": {
+    "siteName": "La Dcouverte",
+    "tagline": "Média musical indépendant",
+    "baseline": "On cherche, on écoute, on raconte. La musique avant tout le monde.",
+    "logoUrl": "",
+    "accent": "#FF3B1F",
+    "accent2": "#2F6BFF",
+    "email": "medialad77@gmail.com",
+    "footerNote": "La Dcouverte — association loi 1901 · Aulnay-sous-Bois",
+    "socials": [
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/ladcouverte"
+      },
+      {
+        "label": "YouTube",
+        "url": "https://www.youtube.com/@ladcouverte"
+      },
+      {
+        "label": "TikTok",
+        "url": "https://www.tiktok.com/@ladcouverte"
+      },
+      {
+        "label": "Spotify",
+        "url": "https://open.spotify.com"
+      }
+    ]
+  },
+  "home": {
+    "heroKicker": "Nouvelle vague",
+    "heroTitle": "La musique qu'on écoutera demain, on en parle aujourd'hui.",
+    "heroText": "La Dcouverte est un média indépendant dédié aux scènes émergentes : rap, hyperpop, R&B, électronique, d'ici et d'ailleurs. Interviews, chroniques, débats et découvertes.",
+    "heroCtaLabel": "Lire les articles",
+    "heroCtaUrl": "articles.html",
+    "heroImage": "",
+    "featuredSlug": "de-nouvelles-frontieres-sonores",
+    "actus": [
+      {
+        "id": "a1",
+        "date": "2026-07-13",
+        "title": "JMK$ — nouveau single",
+        "text": "On décortique le retour de JMK$ et ce que ça dit de la scène.",
+        "url": ""
+      },
+      {
+        "id": "a2",
+        "date": "2026-06-28",
+        "title": "Le retour de La Fève",
+        "text": "Analyse à chaud dans Le Dbat.",
+        "url": ""
+      },
+      {
+        "id": "a3",
+        "date": "2026-06-11",
+        "title": "Les albums surestimés de 2026",
+        "text": "Le Dbat, épisode le plus houleux de la saison.",
+        "url": ""
+      }
+    ],
+    "coupsDeCoeur": [
+      {
+        "id": "c1",
+        "artist": "Nia Archives",
+        "title": "Cards on the Table",
+        "why": "La jungle remise au goût du jour, sans compromis.",
+        "cover": "",
+        "listenUrl": "https://open.spotify.com/search/Nia%20Archives%20Cards%20on%20the%20Table"
+      },
+      {
+        "id": "c2",
+        "artist": "Ele A",
+        "title": "Jeans",
+        "why": "Du boombap suisse-italien, une voix qui feat avec elle-même.",
+        "cover": "",
+        "listenUrl": "https://open.spotify.com/search/Ele%20A%20Jeans"
+      },
+      {
+        "id": "c3",
+        "artist": "143leti",
+        "title": "Sanar",
+        "why": "18 ans, du funk brésilien mélancolique. Une évidence.",
+        "cover": "",
+        "listenUrl": "https://open.spotify.com/search/143leti%20Sanar"
+      }
+    ],
+    "rubriques": [
+      {
+        "id": "r1",
+        "name": "À la Dcouverte",
+        "desc": "Le format qui met en avant un artiste émergent par semaine."
+      },
+      {
+        "id": "r2",
+        "name": "Le Dbat",
+        "desc": "On s'engueule (poliment) sur l'actu musicale."
+      },
+      {
+        "id": "r3",
+        "name": "Interviews",
+        "desc": "Face à face avec les artistes, du studio au Bataclan."
+      },
+      {
+        "id": "r4",
+        "name": "Top Album",
+        "desc": "Les classements annuels de la rédaction."
+      },
+      {
+        "id": "r5",
+        "name": "Playlist",
+        "desc": "Nos sélections mensuelles, FR et US."
+      },
+      {
+        "id": "r6",
+        "name": "Le Mag",
+        "desc": "L'édition papier / PDF de La Dcouverte."
+      }
+    ]
+  },
+  "articles": [
+    {
+      "id": "art1",
+      "slug": "de-nouvelles-frontieres-sonores",
+      "title": "De nouvelles frontières sonores",
+      "kicker": "À la Dcouverte",
+      "excerpt": "Cinq artistes émergentes, cinq pays, une même énergie : Nia Archives, Rada, 143leti, Ele A et Killamisha.",
+      "author": "La Dcouverte",
+      "date": "2025-01-05",
+      "cover": "",
+      "tags": [
+        "émergence",
+        "hyperpop",
+        "jungle",
+        "rap"
+      ],
+      "published": true,
+      "blocks": [
+        {
+          "id": "b1",
+          "type": "text",
+          "value": "Ces artistes émergentes, venues de différents horizons, partagent une énergie unique et une vision musicale audacieuse. Hyperpop, rap, R&B : chacune repousse les limites créatives et réinvente les sonorités actuelles."
+        },
+        {
+          "id": "b2",
+          "type": "heading",
+          "value": "Nia Archives — Royaume-Uni"
+        },
+        {
+          "id": "b3",
+          "type": "text",
+          "value": "Compositrice, chanteuse et DJ de 25 ans originaire de Bradford, elle fait de la musique depuis ses 16 ans. Nouvelle sensation d'Island Records, elle propose une musique avant-gardiste en réinventant la jungle, ce style né en 1993 dans les raves londoniennes, entre darkcore et drum'n'bass, avec des influences hip-hop, reggae, breakbeat, funk, dancehall et soul. Son premier album, Silence Is Loud, compte 13 morceaux en solo : elle se suffit à elle-même. Elle a rempli l'Élysée Montmartre sans difficulté."
+        },
+        {
+          "id": "b4",
+          "type": "audio",
+          "value": "https://open.spotify.com/search/Nia%20Archives",
+          "caption": "Top 3 : Cards on the Table · Killjoy! · So Tell Me…"
+        },
+        {
+          "id": "b5",
+          "type": "heading",
+          "value": "Rada — Royaume-Uni / Russie"
+        },
+        {
+          "id": "b6",
+          "type": "text",
+          "value": "Artiste russo-britannique d'origine jamaïcaine, née à Londres et grandie à Moscou. Elle opère un virage en 2022 avec TightTrope et End Me : Eurodance, hyperpop et esthétique Y2K. Voix retravaillée à l'autotune, phrases courtes, arrogance assumée. Son manager appelle ça du « SWAG&B ». Payme, à l'été 2024, a été validé par Charli XCX."
+        },
+        {
+          "id": "b7",
+          "type": "heading",
+          "value": "143leti — Argentine"
+        },
+        {
+          "id": "b8",
+          "type": "text",
+          "value": "18 ans, débuts en 2022 avec Kemando. Pop, R&B, reggaeton, trap : elle fait ce qu'elle aime sans se soucier des tendances. Sa voix, pleine de sensualité et de tristesse, est une boule d'émotion. Sur Sanar, elle transforme une prod de funk brésilien en morceau mélancolique. Simple et efficace."
+        },
+        {
+          "id": "b9",
+          "type": "heading",
+          "value": "Ele A — Suisse / Italie"
+        },
+        {
+          "id": "b10",
+          "type": "text",
+          "value": "Rappeuse suisse d'origine italienne, fille de deux professeurs de musique, dix ans de violoncelle avant de découvrir le rap avec QCVC 2 de Gemitaiz. Productions intemporelles ancrées dans le boombap, direction artistique autour du bleu et de la mer. Son EP Aqua (mai 2024) prend un virage plus mainstream après sa signature chez Universal Music Italia."
+        },
+        {
+          "id": "b11",
+          "type": "heading",
+          "value": "Killamisha — Malaisie"
+        },
+        {
+          "id": "b12",
+          "type": "text",
+          "value": "Originaire de Kuala Lumpur, très peu d'informations disponibles. Elle chante en malais et en anglais. Son album Underground Princess a marqué un tournant : elle s'est fait un nom sur la scène underground et joue dans les clubs les plus branchés du pays. De l'hyperpop très 2024, aux productions inspirées des défilés de mode."
+        },
+        {
+          "id": "b13",
+          "type": "quote",
+          "value": "Il est temps de les suivre de près, car l'avenir leur appartient."
+        },
+        {
+          "id": "b14",
+          "type": "text",
+          "value": "Sources : Genius, Instagram, Universal, The FADER."
+        }
+      ]
+    },
+    {
+      "id": "art2",
+      "slug": "itw-ken-carson-bataclan",
+      "title": "Ken Carson au Bataclan : l'interview",
+      "kicker": "Interview",
+      "excerpt": "Rencontre en backstage avec Ken Carson avant son passage au Bataclan.",
+      "author": "La Dcouverte",
+      "date": "2025-10-29",
+      "cover": "",
+      "tags": [
+        "interview",
+        "rap US"
+      ],
+      "published": true,
+      "blocks": [
+        {
+          "id": "b1",
+          "type": "text",
+          "value": "À compléter depuis l'admin : chapô de l'interview, contexte de la date au Bataclan, ambiance du public."
+        },
+        {
+          "id": "b2",
+          "type": "video",
+          "value": "",
+          "caption": "Vidéo de l'interview (colle un lien YouTube ici depuis l'admin)"
+        },
+        {
+          "id": "b3",
+          "type": "text",
+          "value": "Retranscription des questions / réponses."
+        }
+      ]
+    },
+    {
+      "id": "art3",
+      "slug": "les-albums-surestimes-de-2026",
+      "title": "Les albums surestimés de 2026",
+      "kicker": "Le Dbat",
+      "excerpt": "La rédaction s'écharpe : quels disques de l'année sont montés trop haut ?",
+      "author": "La rédaction",
+      "date": "2026-06-11",
+      "cover": "",
+      "tags": [
+        "débat",
+        "albums"
+      ],
+      "published": true,
+      "blocks": [
+        {
+          "id": "b1",
+          "type": "text",
+          "value": "À compléter depuis l'admin : les arguments de chacun, les albums cités, le verdict (s'il y en a un)."
+        },
+        {
+          "id": "b2",
+          "type": "link",
+          "value": "",
+          "caption": "Lien vers l'épisode complet"
+        }
+      ]
+    }
+  ],
+  "histoire": {
+    "intro": "La Dcouverte est un média musical indépendant né d'une bande de passionnés de la scène émergente. Ce qui a commencé par des mixtapes et des interviews improvisées est devenu une association, un magazine, des concerts et une communauté.",
+    "mission": "Promotion, diffusion et création musicale. On met en lumière les artistes qu'on aime avant que tout le monde en parle, et on organise les événements qui vont avec.",
+    "stats": [
+      {
+        "id": "s1",
+        "value": "2024",
+        "label": "Association loi 1901"
+      },
+      {
+        "id": "s2",
+        "value": "4",
+        "label": "Numéros du Mag"
+      },
+      {
+        "id": "s3",
+        "value": "20+",
+        "label": "Interviews"
+      },
+      {
+        "id": "s4",
+        "value": "93",
+        "label": "Aulnay-sous-Bois"
+      }
+    ],
+    "timeline": [
+      {
+        "id": "t1",
+        "year": "2021",
+        "title": "Les débuts",
+        "text": "Premiers projets collectifs et sélections partagées sur SoundCloud."
+      },
+      {
+        "id": "t2",
+        "year": "2022",
+        "title": "Les premières interviews",
+        "text": "Le média prend forme : interviews, beat tapes et press kits."
+      },
+      {
+        "id": "t3",
+        "year": "2024",
+        "title": "La Dcouverte devient une association",
+        "text": "Statuts signés à Paris le 10 février 2024, publication au JOAFE. Siège social à Aulnay-sous-Bois."
+      },
+      {
+        "id": "t4",
+        "year": "2024",
+        "title": "Le Mag",
+        "text": "Lancement du journal La D, décliné en plusieurs numéros."
+      },
+      {
+        "id": "t5",
+        "year": "2025",
+        "title": "Concerts et formats vidéo",
+        "text": "Interviews filmées, Le Dbat, Chasse au trésor, concerts et soirées."
+      },
+      {
+        "id": "t6",
+        "year": "2026",
+        "title": "La Dcouverte en ligne",
+        "text": "Le média se dote de son site : articles, débats et découvertes au même endroit."
+      }
+    ],
+    "members": [
+      {
+        "id": "m1",
+        "name": "Noa Lutonadio",
+        "role": "Co-président",
+        "bio": "",
+        "photo": "",
+        "links": []
+      },
+      {
+        "id": "m2",
+        "name": "Nolan Duhazé",
+        "role": "Co-président",
+        "bio": "",
+        "photo": "",
+        "links": []
+      },
+      {
+        "id": "m3",
+        "name": "Corentin Grolleau",
+        "role": "Vice-président",
+        "bio": "",
+        "photo": "",
+        "links": []
+      },
+      {
+        "id": "m4",
+        "name": "Mathéo Milon",
+        "role": "Secrétaire",
+        "bio": "",
+        "photo": "",
+        "links": []
+      },
+      {
+        "id": "m5",
+        "name": "Enzo Hernando",
+        "role": "Trésorier",
+        "bio": "",
+        "photo": "",
+        "links": []
+      }
+    ]
+  },
+  "forum": {
+    "intro": "Pose ta question, lance un débat, balance une reco. La rédaction répond et la communauté aussi.",
+    "categories": [
+      "Question",
+      "Débat",
+      "Reco",
+      "FAQ"
+    ],
+    "questions": [
+      {
+        "id": "q1",
+        "category": "FAQ",
+        "author": "La Dcouverte",
+        "title": "Comment proposer mon projet à La Dcouverte ?",
+        "body": "Envoie-nous un lien d'écoute (Spotify, SoundCloud, YouTube) par mail ou en DM Instagram, avec deux lignes de contexte. On écoute tout, on ne répond pas à tout — mais on écoute vraiment.",
+        "date": "2026-07-01",
+        "pinned": true,
+        "status": "published",
+        "replies": []
+      },
+      {
+        "id": "q2",
+        "category": "Débat",
+        "author": "Anonyme",
+        "title": "L'hyperpop est-elle déjà en train de mourir ?",
+        "body": "Entre la récup' mainstream et la saturation TikTok, est-ce qu'il reste une scène ou juste une esthétique ?",
+        "date": "2026-06-20",
+        "pinned": false,
+        "status": "published",
+        "replies": [
+          {
+            "id": "r1",
+            "author": "La Dcouverte",
+            "body": "La scène bouge encore beaucoup hors des radars (Malaisie, Argentine, UK). Ce qui meurt, c'est le tag, pas la musique.",
+            "date": "2026-06-21",
+            "isTeam": true
+          }
+        ]
+      },
+      {
+        "id": "q3",
+        "category": "Reco",
+        "author": "Anonyme",
+        "title": "Des recos de rap italien ?",
+        "body": "Après Ele A j'ai envie de creuser, vous conseillez quoi ?",
+        "date": "2026-05-30",
+        "pinned": false,
+        "status": "published",
+        "replies": []
+      }
+    ]
+  }
+};
