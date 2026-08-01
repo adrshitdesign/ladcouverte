@@ -7,8 +7,9 @@ window.LAD_SEED = {
     "siteName": "La Dcouverte",
     "tagline": "Média musical indépendant",
     "baseline": "On cherche, on écoute, on raconte. La musique avant tout le monde.",
-    "logoUrl": "",
-    "accent": "#FF3B1F",
+    "logoUrl": "https://pamblclzgkiqfkojnomp.supabase.co/storage/v1/object/public/medias/logo-rond-orange.png",
+    "faviconUrl": "https://pamblclzgkiqfkojnomp.supabase.co/storage/v1/object/public/medias/favicon.png",
+    "accent": "#FF6840",
     "accent2": "#2F6BFF",
     "email": "medialad77@gmail.com",
     "footerNote": "La Dcouverte — association loi 1901 · Aulnay-sous-Bois",
@@ -275,6 +276,8 @@ window.LAD_SEED = {
     }
   ],
   "histoire": {
+    "image": "",
+    "gallery": [],
     "intro": "La Dcouverte est un média musical indépendant né d'une bande de passionnés de la scène émergente. Ce qui a commencé par des mixtapes et des interviews improvisées est devenu une association, un magazine, des concerts et une communauté.",
     "mission": "Promotion, diffusion et création musicale. On met en lumière les artistes qu'on aime avant que tout le monde en parle, et on organise les événements qui vont avec.",
     "stats": [
