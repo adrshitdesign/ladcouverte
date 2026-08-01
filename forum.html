@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog &amp; FAQ — La Dcouverte</title>
+<meta name="description" content="Le blog ouvert de La Dcouverte : posez vos questions, débattez, partagez vos recommandations musicales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header data-nav></header>
+
+<main>
+  <section class="hero" style="padding:64px 0 24px"><div class="wrap">
+    <span class="kicker">Blog &amp; FAQ</span>
+    <h1 style="font-size:clamp(34px,5vw,58px)">La parole est à vous</h1>
+    <p id="intro"></p>
+  </div></section>
+
+  <section class="section" style="padding-top:20px"><div class="wrap">
+    <div class="row" style="grid-template-columns:1fr 380px;align-items:start;gap:34px">
+      <div>
+        <div class="chip-row" id="filters" style="margin-bottom:20px"></div>
+        <div id="threads"></div>
+        <p class="muted" id="empty" style="display:none">Rien dans cette catégorie pour l'instant. Lance le premier sujet !</p>
+      </div>
+
+      <aside class="panel" id="form-panel">
+        <h3 style="margin:0 0 4px;font-size:21px">Ouvrir un sujet</h3>
+        <p class="muted" style="font-size:14px;margin:0 0 18px">Question, débat ou reco — tout est bienvenu.</p>
+        <form id="ask">
+          <div class="field"><label for="f-cat">Catégorie</label><select id="f-cat"></select></div>
+          <div class="field"><label for="f-author">Ton pseudo</label><input id="f-author" placeholder="Anonyme" maxlength="40"></div>
+          <div class="field"><label for="f-title">Sujet</label><input id="f-title" required placeholder="Ta question en une phrase" maxlength="140"></div>
+          <div class="field"><label for="f-body">Détails</label><textarea id="f-body" required placeholder="Développe un peu…" maxlength="2000"></textarea></div>
+          <button class="btn accent" style="margin-top:18px;width:100%" type="submit">Publier</button>
+          <p class="muted" style="font-size:12.5px;margin-top:12px">En publiant, tu acceptes de rester respectueux. La rédaction modère.</p>
+        </form>
+      </aside>
+    </div>
+  </div></section>
+</main>
+
+<footer data-footer></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="data/seed.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+LAD.boot("forum.html", function () {
+  var U = LAD.util, F = LAD.store.content.forum || {};
+  var cats = F.categories || ["Question", "Débat", "Reco"];
+  var state = { cat: "" };
+  var data = [];
+
+  document.getElementById("intro").textContent = F.intro || "";
+  document.getElementById("f-cat").innerHTML = cats.map(function (c) {
+    return '<option value="' + U.esc(c) + '">' + U.esc(c) + "</option>";
+  }).join("");
+  document.getElementById("filters").innerHTML =
+    ['<button class="chip on" data-c="">Tout</button>']
+      .concat(cats.map(function (c) { return '<button class="chip" data-c="' + U.esc(c) + '">' + U.esc(c) + "</button>"; }))
+      .join("");
+
+  document.getElementById("filters").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    state.cat = b.dataset.c;
+    [].forEach.call(this.querySelectorAll(".chip"), function (c) { c.classList.toggle("on", c === b); });
+    paint();
+  });
+
+  function badge(cat) {
+    var cls = cat === "Débat" ? "" : cat === "Reco" ? "blue" : "grey";
+    return '<span class="badge ' + cls + '">' + U.esc(cat || "Sujet") + "</span>";
+  }
+
+  function paint() {
+    var list = data.filter(function (q) { return !state.cat || q.category === state.cat; });
+    document.getElementById("empty").style.display = list.length ? "none" : "block";
+    document.getElementById("threads").innerHTML = list.map(function (q) {
+      return '<article class="thread" data-q="' + U.esc(q.id) + '">' +
+        '<div class="thread-head">' + badge(q.category) +
+        (q.pinned ? '<span class="badge grey">Épinglé</span>' : "") +
+        '<span class="muted" style="font-size:13px">' + U.esc(q.author || "Anonyme") + " · " + U.date(q.date) + "</span></div>" +
+        "<h3>" + U.esc(q.title) + "</h3>" +
+        '<p class="body">' + U.esc(q.body).replace(/\n/g, "<br>") + "</p>" +
+        (q.replies && q.replies.length ? '<div class="replies">' + q.replies.map(function (r) {
+          return '<div class="reply' + (r.isTeam ? " team" : "") + '"><div class="av">' +
+            U.esc(r.isTeam ? "LD" : U.initials(r.author)) + "</div><div>" +
+            '<div class="who">' + U.esc(r.author || "Anonyme") +
+            (r.isTeam ? ' <span class="badge">Rédaction</span>' : "") +
+            ' <span class="muted" style="font-weight:400">· ' + U.dateShort(r.date) + "</span></div>" +
+            '<div class="txt">' + U.esc(r.body).replace(/\n/g, "<br>") + "</div></div></div>";
+        }).join("") + "</div>" : "") +
+        '<div class="thread-foot">' +
+        '<button class="btn ghost sm" data-reply="' + U.esc(q.id) + '">Répondre</button>' +
+        "<span>" + ((q.replies || []).length) + " réponse" + ((q.replies || []).length > 1 ? "s" : "") + "</span></div>" +
+        '<div class="reply-form hide" style="margin-top:14px">' +
+        '<div class="row"><div class="field"><input class="r-author" placeholder="Ton pseudo" maxlength="40"></div></div>' +
+        '<div class="field" style="margin-top:10px"><textarea class="r-body" placeholder="Ta réponse…" maxlength="1200"></textarea></div>' +
+        '<button class="btn accent sm" style="margin-top:10px" data-send="' + U.esc(q.id) + '">Envoyer</button></div>' +
+        "</article>";
+    }).join("");
+  }
+
+  document.getElementById("threads").addEventListener("click", function (e) {
+    var open = e.target.closest("[data-reply]");
+    if (open) {
+      open.closest(".thread").querySelector(".reply-form").classList.toggle("hide");
+      return;
+    }
+    var send = e.target.closest("[data-send]");
+    if (send) {
+      var th = send.closest(".thread");
+      var body = th.querySelector(".r-body").value.trim();
+      if (!body) { U.toast("Écris quelque chose d'abord"); return; }
+      send.disabled = true;
+      LAD.store.addReply(send.dataset.send, {
+        author: th.querySelector(".r-author").value.trim() || "Anonyme",
+        body: body, isTeam: false
+      }).then(load).then(function () { U.toast("Réponse publiée"); })
+        .catch(function (err) { U.toast("Erreur : " + err.message); send.disabled = false; });
+    }
+  });
+
+  document.getElementById("ask").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = this.querySelector("button[type=submit]");
+    btn.disabled = true;
+    LAD.store.addQuestion({
+      category: document.getElementById("f-cat").value,
+      author: document.getElementById("f-author").value.trim() || "Anonyme",
+      title: document.getElementById("f-title").value.trim(),
+      body: document.getElementById("f-body").value.trim()
+    }).then(function (status) {
+      document.getElementById("f-title").value = "";
+      document.getElementById("f-body").value = "";
+      U.toast(status === "pending" ? "Envoyé, en attente de modération" : "Sujet publié, merci !");
+      return load();
+    }).catch(function (err) { U.toast("Erreur : " + err.message); })
+      .then(function () { btn.disabled = false; });
+  });
+
+  function load() {
+    return LAD.store.getQuestions().then(function (rows) { data = rows; paint(); });
+  }
+  return load();
+});
+</script>
+</body>
+</html>

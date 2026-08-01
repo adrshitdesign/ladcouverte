@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Dcouverte — média musical indépendant</title>
+<meta name="description" content="La Dcouverte : média musical indépendant dédié aux scènes émergentes. Articles, interviews, débats, coups de cœur.">
+<meta property="og:title" content="La Dcouverte — média musical indépendant">
+<meta property="og:description" content="La musique qu'on écoutera demain, on en parle aujourd'hui.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header data-nav></header>
+
+<main id="app"></main>
+
+<footer data-footer></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="data/seed.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+LAD.boot("index.html", function () {
+  var C = LAD.store.content, U = LAD.util, h = C.home, s = C.settings;
+  var pub = (C.articles || []).filter(function (a) { return a.published !== false; })
+    .sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); });
+  var featured = pub.filter(function (a) { return a.slug === h.featuredSlug; })[0] || pub[0];
+  var rest = pub.filter(function (a) { return a !== featured; }).slice(0, 3);
+
+  function cover(a, cls, markCls) {
+    return a && a.cover
+      ? '<img src="' + U.esc(a.cover) + '" alt="' + U.esc(a.title) + '">'
+      : LAD.mark(markCls || "mark-sm");
+  }
+
+  var html = '';
+
+  /* ---- Hero ---- */
+  html += '<section class="hero"><div class="wrap hero-grid">' +
+    '<div><span class="kicker">' + U.esc(h.heroKicker || s.tagline) + '</span>' +
+    '<h1>' + U.esc(h.heroTitle) + '</h1>' +
+    '<p>' + U.esc(h.heroText) + '</p>' +
+    '<div class="hero-actions">' +
+      '<a class="btn accent" href="' + U.esc(h.heroCtaUrl || "articles.html") + '">' + U.esc(h.heroCtaLabel || "Lire les articles") + '</a>' +
+      '<a class="btn ghost" href="forum.html">Poser une question</a>' +
+    '</div></div>' +
+    '<div class="hero-art">' + (h.heroImage ? '<img src="' + U.esc(h.heroImage) + '" alt="">' : LAD.mark("mark-lg")) + '</div>' +
+    '</div></section>';
+
+  /* ---- À la une ---- */
+  if (featured) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>À la une</h2><a class="link" href="articles.html">Tous les articles →</a></div>' +
+      '<a class="feature" href="' + LAD.articleUrl(featured) + '">' +
+        '<div class="card-media">' + cover(featured, "", "mark-sm") + '</div>' +
+        '<div class="feature-body"><span class="card-kicker">' + U.esc(featured.kicker || "Article") + '</span>' +
+        '<h3>' + U.esc(featured.title) + '</h3>' +
+        '<p class="muted">' + U.esc(featured.excerpt) + '</p>' +
+        '<div class="card-meta"><span>' + U.esc(featured.author || "") + '</span><span>' + U.date(featured.date) + '</span></div>' +
+      '</div></a></div></section>';
+  }
+
+  /* ---- Actus ---- */
+  if ((h.actus || []).length) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>Nos actualités</h2></div>' +
+      h.actus.map(function (a) {
+        var t = '<div><h4>' + U.esc(a.title) + '</h4><p>' + U.esc(a.text) + '</p></div>';
+        var inner = '<div class="date">' + U.date(a.date) + '</div>' + t;
+        return a.url ? '<a class="actu" href="' + U.esc(a.url) + '">' + inner + '</a>'
+                     : '<div class="actu">' + inner + '</div>';
+      }).join('') +
+      '</div></section>';
+  }
+
+  /* ---- Coups de cœur ---- */
+  if ((h.coupsDeCoeur || []).length) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>Coups de cœur</h2><span class="link">La sélection de la rédaction</span></div>' +
+      '<div class="grid c3">' + h.coupsDeCoeur.map(function (c) {
+        var body = '<div class="cover">' + (c.cover ? '<img src="' + U.esc(c.cover) + '" alt="">' : U.esc((c.artist || "?")[0])) + '</div>' +
+          '<div class="meta"><div class="artist">' + U.esc(c.artist) + '</div>' +
+          '<div class="track">' + U.esc(c.title) + '</div>' +
+          '<div class="why">' + U.esc(c.why) + '</div></div>';
+        return c.listenUrl
+          ? '<a class="pick" href="' + U.esc(c.listenUrl) + '" target="_blank" rel="noopener">' + body + '</a>'
+          : '<div class="pick">' + body + '</div>';
+      }).join('') + '</div></div></section>';
+  }
+
+  /* ---- Derniers articles ---- */
+  if (rest.length) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>À lire aussi</h2></div>' +
+      '<div class="grid c3">' + rest.map(function (a) {
+        return '<a class="card" href="' + LAD.articleUrl(a) + '">' +
+          '<div class="card-media">' + cover(a) + '</div>' +
+          '<div class="card-body"><span class="card-kicker">' + U.esc(a.kicker || "Article") + '</span>' +
+          '<h3>' + U.esc(a.title) + '</h3><p>' + U.esc(a.excerpt) + '</p>' +
+          '<div class="card-meta"><span>' + U.date(a.date) + '</span></div></div></a>';
+      }).join('') + '</div></div></section>';
+  }
+
+  /* ---- Rubriques ---- */
+  if ((h.rubriques || []).length) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>Nos formats</h2></div>' +
+      '<div class="grid c3">' + h.rubriques.map(function (r) {
+        return '<div class="rubrique"><h4>' + U.esc(r.name) + '</h4><p>' + U.esc(r.desc) + '</p></div>';
+      }).join('') + '</div></div></section>';
+  }
+
+  /* ---- CTA forum ---- */
+  html += '<section class="section"><div class="wrap"><div class="panel" style="display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap">' +
+    '<div style="max-width:52ch"><h2 style="font-size:28px;margin:0 0 6px">Un avis, une question, une reco ?</h2>' +
+    '<p class="muted" style="margin:0">Le blog de La Dcouverte est ouvert : pose ta question, lance un débat, partage une découverte.</p></div>' +
+    '<a class="btn accent" href="forum.html">Ouvrir le blog</a></div></div></section>';
+
+  document.getElementById("app").innerHTML = html;
+});
+</script>
+</body>
+</html>

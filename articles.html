@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Articles — La Dcouverte</title>
+<meta name="description" content="Tous les articles de La Dcouverte : chroniques, interviews, débats et découvertes musicales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header data-nav></header>
+
+<main>
+  <section class="hero" style="padding:64px 0 28px">
+    <div class="wrap">
+      <span class="kicker">Le journal</span>
+      <h1 style="font-size:clamp(34px,5vw,60px)">Articles</h1>
+      <p>Chroniques, interviews, débats et découvertes. Filtre par format ou cherche un artiste.</p>
+      <div style="max-width:420px;margin-top:22px">
+        <input id="q" type="search" placeholder="Chercher un artiste, un mot-clé…">
+      </div>
+      <div class="chip-row" id="filters" style="margin-top:16px"></div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:24px"><div class="wrap"><div class="grid c3" id="list"></div>
+    <p class="muted" id="empty" style="display:none">Aucun article ne correspond à cette recherche.</p>
+  </div></section>
+</main>
+
+<footer data-footer></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="data/seed.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+LAD.boot("articles.html", function () {
+  var U = LAD.util;
+  var all = (LAD.store.content.articles || [])
+    .filter(function (a) { return a.published !== false; })
+    .sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); });
+
+  var kickers = [];
+  all.forEach(function (a) { if (a.kicker && kickers.indexOf(a.kicker) < 0) kickers.push(a.kicker); });
+
+  var state = { k: "", q: "" };
+
+  document.getElementById("filters").innerHTML =
+    ['<button class="chip on" data-k="">Tout</button>']
+      .concat(kickers.map(function (k) { return '<button class="chip" data-k="' + U.esc(k) + '">' + U.esc(k) + '</button>'; }))
+      .join("");
+
+  document.getElementById("filters").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    state.k = b.dataset.k;
+    [].forEach.call(this.querySelectorAll(".chip"), function (c) { c.classList.toggle("on", c === b); });
+    render();
+  });
+  document.getElementById("q").addEventListener("input", function () { state.q = this.value.toLowerCase(); render(); });
+
+  function render() {
+    var list = all.filter(function (a) {
+      if (state.k && a.kicker !== state.k) return false;
+      if (!state.q) return true;
+      var hay = [a.title, a.excerpt, a.author, (a.tags || []).join(" "),
+        (a.blocks || []).map(function (b) { return b.value; }).join(" ")].join(" ").toLowerCase();
+      return hay.indexOf(state.q) > -1;
+    });
+    document.getElementById("empty").style.display = list.length ? "none" : "block";
+    document.getElementById("list").innerHTML = list.map(function (a) {
+      return '<a class="card" href="' + LAD.articleUrl(a) + '">' +
+        '<div class="card-media">' + (a.cover ? '<img src="' + U.esc(a.cover) + '" alt="' + U.esc(a.title) + '">' : LAD.mark("mark-sm")) + '</div>' +
+        '<div class="card-body"><span class="card-kicker">' + U.esc(a.kicker || "Article") + '</span>' +
+        '<h3>' + U.esc(a.title) + '</h3><p>' + U.esc(a.excerpt) + '</p>' +
+        '<div class="card-meta"><span>' + U.esc(a.author || "") + '</span><span>' + U.date(a.date) + '</span>' +
+        (a.tags || []).slice(0, 2).map(function (t) { return '<span class="tag">' + U.esc(t) + '</span>'; }).join("") +
+        '</div></div></a>';
+    }).join("");
+  }
+  render();
+});
+</script>
+</body>
+</html>

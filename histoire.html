@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le média — La Dcouverte</title>
+<meta name="description" content="L'histoire de La Dcouverte, média musical indépendant, et les membres qui le font vivre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header data-nav></header>
+
+<main id="app"></main>
+
+<footer data-footer></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="data/seed.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+LAD.boot("histoire.html", function () {
+  var U = LAD.util, C = LAD.store.content, hi = C.histoire || {}, s = C.settings || {};
+  var html = "";
+
+  html += '<section class="hero" style="padding:70px 0 30px"><div class="wrap">' +
+    '<span class="kicker">Le média</span>' +
+    '<h1 style="font-size:clamp(34px,5vw,62px);max-width:20ch">Qui est La Dcouverte ?</h1>' +
+    '<p style="font-size:19px">' + U.esc(hi.intro || "") + '</p></div></section>';
+
+  if ((hi.stats || []).length) {
+    html += '<section class="section" style="padding-top:20px"><div class="wrap"><div class="stats">' +
+      hi.stats.map(function (x) {
+        return '<div class="stat"><div class="v">' + U.esc(x.value) + '</div><div class="l">' + U.esc(x.label) + '</div></div>';
+      }).join("") + '</div></div></section>';
+  }
+
+  if (hi.mission) {
+    html += '<section class="section"><div class="wrap"><div class="panel" style="max-width:820px">' +
+      '<span class="card-kicker">Notre mission</span>' +
+      '<p style="font-size:20px;line-height:1.5;margin:10px 0 0">' + U.esc(hi.mission) + '</p></div></div></section>';
+  }
+
+  if ((hi.timeline || []).length) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>Notre histoire</h2></div>' +
+      '<div class="timeline" style="max-width:760px">' + hi.timeline.map(function (t) {
+        return '<div class="tl-item"><div class="y">' + U.esc(t.year) + '</div>' +
+          '<h4>' + U.esc(t.title) + '</h4><p>' + U.esc(t.text) + '</p></div>';
+      }).join("") + '</div></div></section>';
+  }
+
+  if ((hi.members || []).length) {
+    html += '<section class="section"><div class="wrap">' +
+      '<div class="section-head"><h2>L\'équipe</h2><span class="link">' + hi.members.length + ' membres</span></div>' +
+      '<div class="grid c4">' + hi.members.map(function (m) {
+        return '<div class="member"><div class="ph">' +
+          (m.photo ? '<img src="' + U.esc(m.photo) + '" alt="' + U.esc(m.name) + '">' : U.esc(U.initials(m.name))) +
+          '</div><div class="n">' + U.esc(m.name) + '</div><div class="r">' + U.esc(m.role || "") + '</div>' +
+          (m.bio ? '<div class="b">' + U.esc(m.bio) + '</div>' : "") +
+          ((m.links || []).length ? '<div class="chip-row" style="justify-content:center;margin-top:10px">' +
+            m.links.map(function (l) {
+              return '<a class="tag" href="' + U.esc(l.url) + '" target="_blank" rel="noopener">' + U.esc(l.label) + '</a>';
+            }).join("") + '</div>' : "") +
+          '</div>';
+      }).join("") + '</div></div></section>';
+  }
+
+  html += '<section class="section"><div class="wrap"><div class="panel" style="display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap">' +
+    '<div style="max-width:52ch"><h2 style="font-size:26px;margin:0 0 6px">Envie de nous rejoindre ou de collaborer ?</h2>' +
+    '<p class="muted" style="margin:0">Rédaction, photo, vidéo, événementiel : écris-nous, on lit tout.</p></div>' +
+    '<a class="btn accent" href="mailto:' + U.esc(s.email || "") + '">Nous écrire</a></div></div></section>';
+
+  document.getElementById("app").innerHTML = html;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — La Dcouverte</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header data-nav></header>
+
+<!-- Écran de connexion -->
+<div id="login" class="wrap hide">
+  <div class="panel login-box">
+    <h2 style="margin:0 0 6px;font-size:24px">Espace rédaction</h2>
+    <p class="muted" style="font-size:14px;margin:0 0 20px" id="login-hint"></p>
+    <form id="login-form">
+      <div class="field" id="email-field"><label for="l-email">Email</label><input id="l-email" type="email" autocomplete="username"></div>
+      <div class="field"><label for="l-pass">Mot de passe</label><input id="l-pass" type="password" autocomplete="current-password" required></div>
+      <button class="btn accent" style="width:100%;margin-top:18px" type="submit">Se connecter</button>
+      <p id="login-err" class="hide" style="color:#ff7c68;font-size:13.5px;margin-top:12px"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Interface CRM -->
+<div id="shell" class="admin-shell hide">
+  <aside class="admin-side">
+    <div class="grp">Contenu</div>
+    <button data-view="dashboard">Tableau de bord</button>
+    <button data-view="home">Page d'accueil</button>
+    <button data-view="articles">Articles</button>
+    <button data-view="histoire">Le média &amp; l'équipe</button>
+    <button data-view="forum">Blog &amp; FAQ</button>
+    <div class="grp">Réglages</div>
+    <button data-view="settings">Identité du site</button>
+    <button data-view="data">Sauvegarde</button>
+    <div class="grp">Session</div>
+    <button id="logout">Se déconnecter</button>
+  </aside>
+  <main class="admin-main" id="view"></main>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="data/seed.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

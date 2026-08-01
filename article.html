@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Article — La Dcouverte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header data-nav></header>
+
+<main id="app"></main>
+
+<footer data-footer></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="data/seed.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+LAD.boot("articles.html", function () {
+  var U = LAD.util, E = LAD.embed;
+  var key = U.param("a");
+  var all = (LAD.store.content.articles || []);
+  var a = all.filter(function (x) { return x.slug === key || x.id === key; })[0];
+
+  if (!a) {
+    document.getElementById("app").innerHTML =
+      '<section class="section"><div class="wrap center" style="padding:80px 0">' +
+      '<h1>Article introuvable</h1><p class="muted">Il a peut-être été renommé ou dépublié.</p>' +
+      '<a class="btn ghost" href="articles.html">Retour aux articles</a></div></section>';
+    return;
+  }
+
+  document.title = a.title + " — La Dcouverte";
+  var md = document.querySelector('meta[name="description"]');
+  if (!md) { md = document.createElement("meta"); md.name = "description"; document.head.appendChild(md); }
+  md.content = a.excerpt || "";
+
+  function block(b) {
+    var cap = b.caption ? '<figcaption>' + U.esc(b.caption) + '</figcaption>' : "";
+    switch (b.type) {
+      case "heading": return "<h2>" + U.esc(b.value) + "</h2>";
+      case "quote": return "<blockquote>" + U.esc(b.value) + "</blockquote>";
+      case "image":
+        if (!b.value) return "";
+        return "<figure><img src='" + U.esc(b.value) + "' alt='" + U.esc(b.caption || "") + "'>" + cap + "</figure>";
+      case "video": return b.value ? "<figure>" + E.video(b.value) + cap + "</figure>" : "";
+      case "audio": return b.value ? "<figure>" + E.audio(b.value) + cap + "</figure>" : "";
+      case "link": return b.value ? E.link(b.value, b.caption) : "";
+      case "embed": return b.value ? '<div class="embed video">' + b.value + "</div>" : "";
+      default: return U.nl2p(b.value);
+    }
+  }
+
+  var related = all.filter(function (x) {
+    return x !== a && x.published !== false && (x.kicker === a.kicker || (x.tags || []).some(function (t) { return (a.tags || []).indexOf(t) > -1; }));
+  }).slice(0, 3);
+
+  var html = '<article><div class="wrap"><div class="article-head">' +
+    '<span class="kicker">' + U.esc(a.kicker || "Article") + '</span>' +
+    '<h1>' + U.esc(a.title) + '</h1>' +
+    (a.excerpt ? '<p style="font-size:19px;color:#c9c9d2;max-width:60ch">' + U.esc(a.excerpt) + '</p>' : "") +
+    '<div class="article-meta"><span>Par ' + U.esc(a.author || "La Dcouverte") + '</span><span>' + U.date(a.date) + '</span>' +
+    (a.tags || []).map(function (t) { return '<span class="tag">' + U.esc(t) + '</span>'; }).join("") +
+    '</div></div>';
+
+  if (a.cover) html += '<div class="article-cover"><img src="' + U.esc(a.cover) + '" alt="' + U.esc(a.title) + '"></div>';
+
+  html += '<div class="article-body">' + (a.blocks || []).map(block).join("") + '</div>';
+
+  html += '<div class="panel" style="max-width:720px;margin:0 auto 50px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">' +
+    '<span class="muted">Un avis sur cet article ?</span>' +
+    '<a class="btn accent sm" href="forum.html">En débattre sur le blog</a></div>';
+
+  if (related.length) {
+    html += '<section class="section"><div class="section-head"><h2>Dans la même veine</h2></div><div class="grid c3">' +
+      related.map(function (x) {
+        return '<a class="card" href="' + LAD.articleUrl(x) + '">' +
+          '<div class="card-media">' + (x.cover ? '<img src="' + U.esc(x.cover) + '" alt="">' : LAD.mark("mark-sm")) + '</div>' +
+          '<div class="card-body"><span class="card-kicker">' + U.esc(x.kicker || "") + '</span><h3>' + U.esc(x.title) + '</h3>' +
+          '<div class="card-meta"><span>' + U.date(x.date) + '</span></div></div></a>';
+      }).join("") + '</div></section>';
+  }
+
+  html += '</div></article>';
+  document.getElementById("app").innerHTML = html;
+});
+</script>
+</body>
+</html>
