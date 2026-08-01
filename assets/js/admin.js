@@ -126,7 +126,8 @@
       '<div class="row">' + field("Nom du média", "settings.siteName") + field("Accroche courte", "settings.tagline") + "</div>" +
       field("Baseline (pied de page)", "settings.baseline", { textarea: true, rows: 2 }) +
       '<div class="row">' + field("Logo (URL d'image)", "settings.logoUrl", { hint: "laisse vide pour le logo typographique" }) +
-      field("Email de contact", "settings.email") + "</div>" +
+      field("Favicon (URL d'image)", "settings.faviconUrl", { hint: "l'icône dans l'onglet du navigateur" }) + "</div>" +
+      field("Email de contact", "settings.email") +
       '<div class="row c3">' + field("Couleur d'accent", "settings.accent", { type: "color" }) +
       field("Couleur secondaire", "settings.accent2", { type: "color" }) +
       field("Mention légale (pied de page)", "settings.footerNote") + "</div>" +
@@ -260,7 +261,17 @@
     return head("Le média & l'équipe", '<a class="btn ghost" href="histoire.html" target="_blank">Aperçu ↗</a>') +
       '<div class="panel">' +
       field("Introduction", "histoire.intro", { textarea: true, rows: 4 }) +
-      field("Mission", "histoire.mission", { textarea: true, rows: 3 }) + "</div>" +
+      field("Mission", "histoire.mission", { textarea: true, rows: 3 }) +
+      field("Image de bandeau (URL)", "histoire.image", { hint: "photo large affichée sous l'introduction" }) + "</div>" +
+
+      '<div class="panel" style="margin-top:18px"><div class="admin-head" style="margin-bottom:14px">' +
+      '<h3 style="margin:0;font-size:19px">Galerie « En images »</h3>' + addBtn("Ajouter une photo", "gal") + "</div>" +
+      (hi.gallery || []).map(function (g, i) {
+        return '<div class="block-edit"><div class="row">' +
+          field("URL de l'image", "histoire.gallery." + i + ".url") +
+          field("Légende", "histoire.gallery." + i + ".caption") +
+          '</div><div style="margin-top:10px">' + rowActs("gal", i) + "</div></div>";
+      }).join("") + "</div>" +
 
       '<div class="panel" style="margin-top:18px"><div class="admin-head" style="margin-bottom:14px">' +
       '<h3 style="margin:0;font-size:19px">Chiffres clés</h3>' + addBtn("Ajouter un chiffre", "stat") + "</div>" +
@@ -373,6 +384,16 @@
     "stat-del": function (i) { S.content.histoire.stats.splice(+i, 1); touch(); },
     "stat-up": function (i) { move(S.content.histoire.stats, +i, -1); touch(); },
     "stat-down": function (i) { move(S.content.histoire.stats, +i, 1); touch(); },
+
+    gal: function () {
+      var h = S.content.histoire;
+      h.gallery = h.gallery || [];
+      h.gallery.push({ id: U.uid("g"), url: "", caption: "" });
+      touch();
+    },
+    "gal-del": function (i) { S.content.histoire.gallery.splice(+i, 1); touch(); },
+    "gal-up": function (i) { move(S.content.histoire.gallery, +i, -1); touch(); },
+    "gal-down": function (i) { move(S.content.histoire.gallery, +i, 1); touch(); },
 
     tl: function () { S.content.histoire.timeline.push({ id: U.uid("t"), year: "", title: "", text: "" }); touch(); },
     "tl-del": function (i) { S.content.histoire.timeline.splice(+i, 1); touch(); },

@@ -342,6 +342,12 @@ window.LAD = (function () {
     var s = (store.content && store.content.settings) || {};
     if (s.accent) document.documentElement.style.setProperty("--accent", s.accent);
     if (s.accent2) document.documentElement.style.setProperty("--accent-2", s.accent2);
+    var ico = s.faviconUrl || s.logoUrl;
+    if (ico) {
+      var link = document.querySelector('link[rel="icon"]');
+      if (!link) { link = document.createElement("link"); link.rel = "icon"; document.head.appendChild(link); }
+      link.href = ico;
+    }
     var title = document.querySelector("title");
     if (title && title.dataset.suffix !== "off") {
       title.textContent = title.textContent.replace(/La Dcouverte/g, s.siteName || "La Dcouverte");
@@ -350,9 +356,9 @@ window.LAD = (function () {
 
   function brandHtml() {
     var s = (store.content && store.content.settings) || {};
-    var inner = s.logoUrl
-      ? '<img src="' + util.esc(s.logoUrl) + '" alt="' + util.esc(s.siteName || "") + '">'
-      : mark("mark") + "<span>" + util.esc(s.siteName || "La Dcouverte") + "</span>";
+    var inner = (s.logoUrl
+      ? '<img src="' + util.esc(s.logoUrl) + '" alt="">'
+      : mark("mark")) + "<span>" + util.esc(s.siteName || "La Dcouverte") + "</span>";
     return '<a class="brand" href="index.html">' + inner + "</a>";
   }
 
@@ -406,8 +412,15 @@ window.LAD = (function () {
     });
   }
 
+  /* Visuel de repli quand aucune image n'est renseignée : le logo en filigrane */
+  function placeholder(kind) {
+    var s = (store.content && store.content.settings) || {};
+    if (s.logoUrl) return '<img class="ph-logo' + (kind === "hero" ? " big" : "") + '" src="' + util.esc(s.logoUrl) + '" alt="">';
+    return mark(kind === "hero" ? "mark-lg" : "mark-sm");
+  }
+
   return {
-    util: util, embed: embed, store: store, mark: mark,
+    util: util, embed: embed, store: store, mark: mark, placeholder: placeholder,
     boot: boot, renderNav: renderNav, renderFooter: renderFooter, applyTheme: applyTheme,
     articleUrl: function (a) { return "article.html?a=" + encodeURIComponent(a.slug || a.id); }
   };
