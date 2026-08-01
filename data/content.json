@@ -23,7 +23,7 @@
     "heroText": "La Dcouverte est un média indépendant dédié aux scènes émergentes : rap, hyperpop, R&B, électronique, d'ici et d'ailleurs. Interviews, chroniques, débats et découvertes.",
     "heroCtaLabel": "Lire les articles",
     "heroCtaUrl": "articles.html",
-    "heroImage": "",
+    "heroImage": "assets/img/hero-marina.jpg",
     "featuredSlug": "de-nouvelles-frontieres-sonores",
     "actus": [
       {
@@ -51,27 +51,27 @@
     "coupsDeCoeur": [
       {
         "id": "c1",
-        "artist": "Nia Archives",
-        "title": "Cards on the Table",
-        "why": "La jungle remise au goût du jour, sans compromis.",
-        "cover": "",
-        "listenUrl": "https://open.spotify.com/search/Nia%20Archives%20Cards%20on%20the%20Table"
+        "artist": "Metro Boomin",
+        "title": "Heroes & Villains",
+        "why": "Extrait de notre Top US.",
+        "cover": "assets/img/topus-metro-boomin.jpg",
+        "listenUrl": "https://open.spotify.com/search/Metro%20Boomin%20Heroes%20%26%20Villains"
       },
       {
         "id": "c2",
-        "artist": "Ele A",
-        "title": "Jeans",
-        "why": "Du boombap suisse-italien, une voix qui feat avec elle-même.",
-        "cover": "",
-        "listenUrl": "https://open.spotify.com/search/Ele%20A%20Jeans"
+        "artist": "FKA twigs",
+        "title": "Caprisongs",
+        "why": "Extrait de notre Top US.",
+        "cover": "assets/img/topus-fka-twigs.jpg",
+        "listenUrl": "https://open.spotify.com/search/FKA%20twigs%20Caprisongs"
       },
       {
         "id": "c3",
-        "artist": "143leti",
-        "title": "Sanar",
-        "why": "18 ans, du funk brésilien mélancolique. Une évidence.",
-        "cover": "",
-        "listenUrl": "https://open.spotify.com/search/143leti%20Sanar"
+        "artist": "Lolozouaï",
+        "title": "Playgirl",
+        "why": "Extrait de notre Top US.",
+        "cover": "assets/img/topus-lolozouai.jpg",
+        "listenUrl": "https://open.spotify.com/search/Lolo%20Zoua%C3%AF%20Playgirl"
       }
     ],
     "rubriques": [
@@ -92,7 +92,7 @@
       "excerpt": "Cinq artistes émergentes, cinq pays, une même énergie : Nia Archives, Rada, 143leti, Ele A et Killamisha.",
       "author": "La Dcouverte",
       "date": "2025-01-05",
-      "cover": "",
+      "cover": "assets/img/carte-yemaya.jpg",
       "tags": ["émergence", "hyperpop", "jungle", "rap"],
       "published": true,
       "blocks": [
@@ -157,7 +157,7 @@
       "excerpt": "Rencontre en backstage avec Ken Carson avant son passage au Bataclan.",
       "author": "La Dcouverte",
       "date": "2025-10-29",
-      "cover": "",
+      "cover": "assets/img/portrait-artiste.jpg",
       "tags": ["interview", "rap US"],
       "published": true,
       "blocks": [
@@ -182,7 +182,7 @@
       "excerpt": "La rédaction s'écharpe : quels disques de l'année sont montés trop haut ?",
       "author": "La rédaction",
       "date": "2026-06-11",
-      "cover": "",
+      "cover": "assets/img/dbat-albums-2026.jpg",
       "tags": ["débat", "albums"],
       "published": true,
       "blocks": [
@@ -196,8 +196,21 @@
     }
   ],
   "histoire": {
-    "image": "",
-    "gallery": [],
+    "image": "assets/img/equipe-studio.jpg",
+    "gallery": [
+      { "id": "g1", "url": "assets/img/equipe-studio-2.jpg", "caption": "En studio" },
+      { "id": "g2", "url": "assets/img/carte-charlomanti.jpg", "caption": "À la Dcouverte — Charlomanti" },
+      { "id": "g3", "url": "assets/img/carte-spike-lee.jpg", "caption": "À la Dcouverte — Spike Lee" },
+      { "id": "g4", "url": "assets/img/carte-passe.jpg", "caption": "À la Dcouverte — Passé" },
+      { "id": "g5", "url": "assets/img/dbat-albums-2026-2.jpg", "caption": "Le Dbat — Les albums surestimés de 2026" },
+      { "id": "g6", "url": "assets/img/top-summer-classique.jpg", "caption": "Top album — Summer Classique" },
+      { "id": "g7", "url": "assets/img/playlist-house-party.jpg", "caption": "Playlist — Soirée House Party" },
+      { "id": "g8", "url": "assets/img/playlist-summer-break.jpg", "caption": "Playlist — Summer Break 2" },
+      { "id": "g9", "url": "assets/img/playlist-cut-the-boat.jpg", "caption": "Playlist — Cut The Boat" },
+      { "id": "g10", "url": "assets/img/chasse-au-tresor.jpg", "caption": "Chasse au trésor" },
+      { "id": "g11", "url": "assets/img/portrait-artiste-2.jpg", "caption": "Séance photo" },
+      { "id": "g12", "url": "assets/img/playlist-vent-tourne.jpg", "caption": "Playlist — Le vent tourne" }
+    ],
     "intro": "La Dcouverte est un média musical indépendant né d'une bande de passionnés de la scène émergente. Ce qui a commencé par des mixtapes et des interviews improvisées est devenu une association, un magazine, des concerts et une communauté.",
     "mission": "Promotion, diffusion et création musicale. On met en lumière les artistes qu'on aime avant que tout le monde en parle, et on organise les événements qui vont avec.",
     "stats": [
